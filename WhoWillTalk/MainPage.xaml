@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+     xmlns:whoWillTalk="clr-namespace:WhoWillTalk"
+     x:Class="WhoWillTalk.MainPage"
+     x:DataType="whoWillTalk:MainPageViewModel"
+     x:Name="Page">
+
+    <ScrollView
+        BackgroundColor="#001074">
+
+        <VerticalStackLayout
+            Spacing="25"
+            Padding="30,0"
+            VerticalOptions="Center">
+
+            <Grid
+                ColumnDefinitions="Auto, *">
+
+                <VerticalStackLayout
+                    Grid.Column="0">
+
+                    <VerticalStackLayout
+                        BindableLayout.ItemsSource="{Binding Persons}"
+                        Spacing="8">
+
+                        <BindableLayout.ItemTemplate>
+
+                            <DataTemplate
+                                x:DataType="whoWillTalk:PersonViewModel">
+
+                                <whoWillTalk:PersonView
+                                    BindingContext="{Binding }">
+
+                                    <whoWillTalk:PersonView.GestureRecognizers>
+
+                                        <TapGestureRecognizer
+                                            Command="{Binding BindingContext.RemoveCommand, Source={x:Reference Page}}"
+                                            CommandParameter="{Binding }"
+                                            NumberOfTapsRequired="2"/>
+
+                                    </whoWillTalk:PersonView.GestureRecognizers>
+
+                                </whoWillTalk:PersonView>
+
+                            </DataTemplate>
+
+                        </BindableLayout.ItemTemplate>
+
+                    </VerticalStackLayout>
+
+                </VerticalStackLayout>
+
+                <Grid
+                    Grid.Column="1"
+                    IsVisible="{Binding HasPersonTalking}"
+                    HorizontalOptions="FillAndExpand">
+
+                    <Frame
+                        VerticalOptions="Center"
+                        HorizontalOptions="Center"
+                        WidthRequest="250"
+                        BackgroundColor="#0198FF">
+
+                        <whoWillTalk:PersonView
+                            BindingContext="{Binding PersonTalking}"
+                            HorizontalOptions="Center"/>
+
+                    </Frame>
+
+                </Grid>
+
+            </Grid>
+
+            <HorizontalStackLayout
+                Spacing="8">
+
+                <Button
+                    Text="Next"
+                    Command="{Binding NextCommand}"/>
+
+                <Button
+                    Text="Reset"
+                    Command="{Binding ResetCommand}"/>
+
+            </HorizontalStackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
