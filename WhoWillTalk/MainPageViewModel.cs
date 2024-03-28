@@ -1,5 +1,6 @@
 using System.Collections.ObjectModel;
 using System.Windows.Input;
+using WhoWillTalk.Features.Configuration;
 
 namespace WhoWillTalk;
 
@@ -59,23 +60,7 @@ public class MainPageViewModel : BaseViewModel {
             new PersonViewModel { Name = "Person 1" },
             new PersonViewModel { Name = "Person 2" },
             new PersonViewModel { Name = "Person 3" },
-            new PersonViewModel { Name = "Person 4" },
-            new PersonViewModel { Name = "Person 5" },
-            new PersonViewModel { Name = "Person 6" },
-            new PersonViewModel { Name = "Person 7" },
-            new PersonViewModel { Name = "Person 8" },
-            new PersonViewModel { Name = "Person 9" },
-            new PersonViewModel { Name = "Person 10" },
-            new PersonViewModel { Name = "Person 11" },
-            new PersonViewModel { Name = "Person 12" },
-            new PersonViewModel { Name = "Person 13" },
-            new PersonViewModel { Name = "Person 14" },
-            new PersonViewModel { Name = "Person 15" },
-            new PersonViewModel { Name = "Person 16" },
-            new PersonViewModel { Name = "Person 17" },
-            new PersonViewModel { Name = "Person 18" },
-            new PersonViewModel { Name = "Person 19" },
-            new PersonViewModel { Name = "Person 20" },
+            new PersonViewModel { Name = "Person 4" }
         };
 
         Persons = new ObservableCollection<PersonViewModel>(personViewModels.OrderBy(p => p.Name).ToList());

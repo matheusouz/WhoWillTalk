@@ -26,6 +26,7 @@
         Margin="16,0,0,0"
         VerticalOptions="Center"
         FontSize="20"
-        FontAttributes="Bold"/>
+        FontAttributes="Bold"
+        TextColor="White"/>
 
 </HorizontalStackLayout>

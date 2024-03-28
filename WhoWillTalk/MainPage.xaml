@@ -2,90 +2,115 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
      xmlns:whoWillTalk="clr-namespace:WhoWillTalk"
+     xmlns:material="clr-namespace:Asaas.Styleguide.Shared.Material"
+     xmlns:material1="clr-namespace:WhoWillTalk.Resources.Material"
      x:Class="WhoWillTalk.MainPage"
      x:DataType="whoWillTalk:MainPageViewModel"
-     x:Name="Page">
+     x:Name="Page"
+     BackgroundColor="#001074"
+     NavigationPage.HasNavigationBar="False">
 
-    <ScrollView
-        BackgroundColor="#001074">
+    <Grid>
 
-        <VerticalStackLayout
-            Spacing="25"
-            Padding="30,0"
-            VerticalOptions="Center">
+        <ScrollView>
 
-            <Grid
-                ColumnDefinitions="Auto, *">
+            <VerticalStackLayout
+                Spacing="25"
+                Padding="30,0"
+                VerticalOptions="Center">
 
-                <VerticalStackLayout
-                    Grid.Column="0">
+                <Grid
+                    ColumnDefinitions="Auto, *">
 
                     <VerticalStackLayout
-                        BindableLayout.ItemsSource="{Binding Persons}"
-                        Spacing="8">
+                        Grid.Column="0">
 
-                        <BindableLayout.ItemTemplate>
+                        <VerticalStackLayout
+                            BindableLayout.ItemsSource="{Binding Persons}"
+                            Spacing="8">
 
-                            <DataTemplate
-                                x:DataType="whoWillTalk:PersonViewModel">
+                            <BindableLayout.ItemTemplate>
 
-                                <whoWillTalk:PersonView
-                                    BindingContext="{Binding }">
+                                <DataTemplate
+                                    x:DataType="whoWillTalk:PersonViewModel">
 
-                                    <whoWillTalk:PersonView.GestureRecognizers>
+                                    <whoWillTalk:PersonView
+                                        BindingContext="{Binding }">
 
-                                        <TapGestureRecognizer
-                                            Command="{Binding BindingContext.RemoveCommand, Source={x:Reference Page}}"
-                                            CommandParameter="{Binding }"
-                                            NumberOfTapsRequired="2"/>
+                                        <whoWillTalk:PersonView.GestureRecognizers>
 
-                                    </whoWillTalk:PersonView.GestureRecognizers>
+                                            <TapGestureRecognizer
+                                                Command="{Binding BindingContext.RemoveCommand, Source={x:Reference Page}}"
+                                                CommandParameter="{Binding }"
+                                                NumberOfTapsRequired="2"/>
 
-                                </whoWillTalk:PersonView>
+                                        </whoWillTalk:PersonView.GestureRecognizers>
 
-                            </DataTemplate>
+                                    </whoWillTalk:PersonView>
 
-                        </BindableLayout.ItemTemplate>
+                                </DataTemplate>
+
+                            </BindableLayout.ItemTemplate>
+
+                        </VerticalStackLayout>
 
                     </VerticalStackLayout>
 
-                </VerticalStackLayout>
+                    <Grid
+                        Grid.Column="1"
+                        IsVisible="{Binding HasPersonTalking}"
+                        HorizontalOptions="FillAndExpand">
 
-                <Grid
-                    Grid.Column="1"
-                    IsVisible="{Binding HasPersonTalking}"
-                    HorizontalOptions="FillAndExpand">
+                        <Frame
+                            VerticalOptions="Center"
+                            HorizontalOptions="Center"
+                            WidthRequest="250"
+                            BackgroundColor="#0198FF">
 
-                    <Frame
-                        VerticalOptions="Center"
-                        HorizontalOptions="Center"
-                        WidthRequest="250"
-                        BackgroundColor="#0198FF">
+                            <whoWillTalk:PersonView
+                                BindingContext="{Binding PersonTalking}"
+                                HorizontalOptions="Center"/>
 
-                        <whoWillTalk:PersonView
-                            BindingContext="{Binding PersonTalking}"
-                            HorizontalOptions="Center"/>
+                        </Frame>
 
-                    </Frame>
+                    </Grid>
 
                 </Grid>
 
-            </Grid>
+                <HorizontalStackLayout
+                    Spacing="8">
 
-            <HorizontalStackLayout
-                Spacing="8">
+                    <Button
+                        Text="Next"
+                        Command="{Binding NextCommand}"/>
 
-                <Button
-                    Text="Next"
-                    Command="{Binding NextCommand}"/>
+                    <Button
+                        Text="Reset"
+                        Command="{Binding ResetCommand}"/>
 
-                <Button
-                    Text="Reset"
-                    Command="{Binding ResetCommand}"/>
+                </HorizontalStackLayout>
 
-            </HorizontalStackLayout>
+            </VerticalStackLayout>
+        </ScrollView>
 
-        </VerticalStackLayout>
-    </ScrollView>
+        <ImageButton
+            HeightRequest="52"
+            WidthRequest="52"
+            HorizontalOptions="End"
+            VerticalOptions="Start"
+            Margin="24"
+            Clicked="ImageButton_OnClicked">
+
+            <ImageButton.Source>
+
+                <material1:MaterialDesignIconSource
+                    Glyph="{x:Static material:MaterialIcon.Cog}"
+                    Color="White"/>
+
+            </ImageButton.Source>
+
+        </ImageButton>
+
+    </Grid>
 
 </ContentPage>
