@@ -10,18 +10,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="89cb69a3-f94f-438e-8015-8eecdf6e98a6" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/WhoWillTalk/Features/Configuration/ConfigurationPage.xaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WhoWillTalk/Features/Configuration/ConfigurationPage.xaml.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WhoWillTalk/Features/Configuration/ConfigurationPageViewModel.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WhoWillTalk/Resources/Fonts/MaterialDesign.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WhoWillTalk/Resources/Material/MaterialDesignIconSource.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WhoWillTalk/Resources/Material/MaterialIcon.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WhoWillTalk/Atlassian/AtlassianService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WhoWillTalk/Atlassian/Dtos/People/AtlassianPersonDTO.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WhoWillTalk/Atlassian/Dtos/Project/AtlassianProjectAttributesDTO.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WhoWillTalk/Atlassian/Dtos/Project/AtlassianProjectDTO.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WhoWillTalk/Atlassian/Dtos/Project/AtlassianProjectInfoDTO.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WhoWillTalk/Atlassian/Dtos/Project/AtlassianRecentProjectsDTO.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WhoWillTalk/Atlassian/Models/AtlassianConfigurationModel.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WhoWillTalk/Atlassian/Models/AtlassianProjectModel.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WhoWillTalk/Atlassian/Request/AtlassianRequestManager.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WhoWillTalk/Features/Configuration/ConfigurationAtlassianPeopleViewModel.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.WhoWillTalk/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WhoWillTalk/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WhoWillTalk/App.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WhoWillTalk/App.xaml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WhoWillTalk/Features/Configuration/ConfigurationPage.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/WhoWillTalk/Features/Configuration/ConfigurationPage.xaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WhoWillTalk/Features/Configuration/ConfigurationPageViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WhoWillTalk/Features/Configuration/ConfigurationPageViewModel.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WhoWillTalk/MainPage.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/WhoWillTalk/MainPage.xaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WhoWillTalk/MainPage.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WhoWillTalk/MainPage.xaml.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WhoWillTalk/MainPageViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WhoWillTalk/MainPageViewModel.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WhoWillTalk/MauiProgram.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WhoWillTalk/MauiProgram.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WhoWillTalk/PersonView.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/WhoWillTalk/PersonView.xaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WhoWillTalk/WhoWillTalk.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/WhoWillTalk/WhoWillTalk.csproj" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,6 +36,14 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/a616e405881e4f76835e24648c093a939ea20/d5/dac7fbe7/CheckBox.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/WhoWillTalk/Resources/Material/MaterialIcon.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="InvalidFacetManager">
@@ -36,9 +51,9 @@
       <facet id="WhoWillTalk/invalid/Android Facet - WhoWillTalk" />
     </ignored-facets>
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 3
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
   <component name="ProjectId" id="2eK9zk9iHUAzDNmuJK5HSYI7VLG" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -105,7 +120,9 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1711642666684</updated>
-      <workItem from="1711642667710" duration="1846000" />
+      <workItem from="1711642667710" duration="2411000" />
+      <workItem from="1711802308549" duration="4107000" />
+      <workItem from="1711806528631" duration="13724000" />
     </task>
     <servers />
   </component>
@@ -114,24 +131,5 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/WhoWillTalk/Features/Configuration/ConfigurationPage.xaml.cs</url>
-          <line>12</line>
-          <properties documentPath="$PROJECT_DIR$/WhoWillTalk/Features/Configuration/ConfigurationPage.xaml.cs" initialLine="12" containingFunctionPresentation="Constructor 'ConfigurationPage'">
-            <startOffsets>
-              <option value="292" />
-            </startOffsets>
-            <endOffsets>
-              <option value="342" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

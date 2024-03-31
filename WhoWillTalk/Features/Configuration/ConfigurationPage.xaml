@@ -1,10 +1,136 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="WhoWillTalk.Features.Configuration.ConfigurationPage"
-             NavigationPage.HasNavigationBar="True">
+     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+     xmlns:configuration="clr-namespace:WhoWillTalk.Features.Configuration"
+     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+     x:Class="WhoWillTalk.Features.Configuration.ConfigurationPage"
+     NavigationPage.HasNavigationBar="True"
+     x:DataType="configuration:ConfigurationPageViewModel"
+     BackgroundColor="#001074"
+     x:Name="Root">
+
+    <NavigationPage.TitleView>
+
+        <Label
+            Text="Configurações"
+            VerticalOptions="Center"
+            VerticalTextAlignment="Center"
+            FontSize="24"/>
+
+    </NavigationPage.TitleView>
+
     <ContentPage.Content>
-        <Label Text="Hello word"/>
+
+        <ScrollView>
+
+            <Grid
+                VerticalOptions="Fill">
+
+                <VerticalStackLayout
+                    HorizontalOptions="Start"
+                    VerticalOptions="Fill">
+
+                    <Entry
+                        Placeholder="Cookie (tenant.session.token)"
+                        Text="{Binding Cookie}"
+                        WidthRequest="400"
+                        HorizontalOptions="Start"
+                        BackgroundColor="White"
+                        Margin="16, 24, 16, 8"
+                        TextColor="Black"/>
+
+                    <Grid>
+
+                        <VerticalStackLayout
+                            Margin="8,0"
+                            IsVisible="{Binding IsLoadingProjects, Converter={toolkit:InvertedBoolConverter}}">
+
+                            <HorizontalStackLayout
+                                BindableLayout.ItemsSource="{Binding Projects}">
+
+                                <BindableLayout.ItemTemplate>
+
+                                    <DataTemplate
+                                        x:DataType="configuration:AtlassianProjectModel">
+
+                                        <Button
+                                            Text="{Binding Name}"
+                                            Command="{Binding BindingContext.ProjectSelectedCommand, Source={x:Reference Root}}"
+                                            CommandParameter="{Binding BoardId}"
+                                            Margin="8"/>
+
+                                    </DataTemplate>
+
+                                </BindableLayout.ItemTemplate>
+
+                            </HorizontalStackLayout>
+
+                        </VerticalStackLayout>
+
+                        <ActivityIndicator
+                            IsRunning="{Binding IsLoadingProjects}"
+                            IsVisible="{Binding IsLoadingProjects}"
+                            HeightRequest="24"
+                            WidthRequest="24"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                            Color="#0198FF"/>
+
+                    </Grid>
+
+                    <Grid>
+
+                        <VerticalStackLayout
+                            BindableLayout.ItemsSource="{Binding Peoples}"
+                            IsVisible="{Binding IsLoadingPeoples, Converter={toolkit:InvertedBoolConverter}}">
+
+                            <BindableLayout.ItemTemplate>
+
+                                <DataTemplate
+                                    x:DataType="configuration:ConfigurationAtlassianPersonViewModel">
+
+                                    <HorizontalStackLayout
+                                        Spacing="8">
+
+                                        <CheckBox
+                                            IsChecked="{Binding Checked}"/>
+
+                                        <Label
+                                            Text="{Binding Name}"
+                                            VerticalOptions="Center"/>
+
+                                    </HorizontalStackLayout>
+
+                                </DataTemplate>
+
+                            </BindableLayout.ItemTemplate>
+
+                        </VerticalStackLayout>
+
+                        <ActivityIndicator
+                            IsRunning="{Binding IsLoadingPeoples}"
+                            IsVisible="{Binding IsLoadingPeoples}"
+                            HeightRequest="24"
+                            WidthRequest="24"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                            Color="#0198FF"/>
+
+                    </Grid>
+
+                </VerticalStackLayout>
+
+                <Button
+                    Text="Save"
+                    Command="{Binding SaveCommand}"
+                    WidthRequest="120"
+                    HorizontalOptions="End"
+                    VerticalOptions="End"
+                    Margin="16, 8, 16, 24"/>
+
+            </Grid>
+
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
