@@ -38,7 +38,8 @@
                         HorizontalOptions="Start"
                         BackgroundColor="White"
                         Margin="16, 24, 16, 8"
-                        TextColor="Black"/>
+                        TextColor="Black"
+                        IsPassword="True"/>
 
                     <Grid>
 

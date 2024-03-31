@@ -105,6 +105,7 @@ public class ConfigurationPageViewModel : BaseViewModel {
         try {
             IsLoadingProjects = true;
             Projects = null;
+            Peoples = null;
 
             List<AtlassianProjectDTO> projects = await AtlassianService.ListProjects(_atlassianConfigurationModel);
             if (projects is null) {
