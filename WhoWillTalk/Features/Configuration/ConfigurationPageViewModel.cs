@@ -18,16 +18,16 @@ public class ConfigurationPageViewModel : BaseViewModel {
         set => SetProperty(ref _isLoadingProjects, value);
     }
 
-    private bool _isLoadingPeoples;
-    public bool IsLoadingPeoples {
-        get => _isLoadingPeoples;
-        set => SetProperty(ref _isLoadingPeoples, value);
+    private bool _isLoadingPersons;
+    public bool IsLoadingPersons {
+        get => _isLoadingPersons;
+        set => SetProperty(ref _isLoadingPersons, value);
     }
 
-    private ObservableCollection<ConfigurationAtlassianPersonViewModel> _peoples;
-    public ObservableCollection<ConfigurationAtlassianPersonViewModel> Peoples {
-        get => _peoples;
-        set => SetProperty(ref _peoples, value);
+    private ObservableCollection<ConfigurationAtlassianPersonViewModel> _persons;
+    public ObservableCollection<ConfigurationAtlassianPersonViewModel> Persons {
+        get => _persons;
+        set => SetProperty(ref _persons, value);
     }
 
     private ObservableCollection<AtlassianProjectModel> _projects;
@@ -54,7 +54,7 @@ public class ConfigurationPageViewModel : BaseViewModel {
                     throw new Exception("Board is required");
                 }
 
-                List<AtlassianPersonDTO> selectedPersons = Peoples?.Where(p => p.Checked).Select(p => p.Person).ToList();
+                List<AtlassianPersonDTO> selectedPersons = Persons?.Where(p => p.Checked).Select(p => p.Person).ToList();
                 if (selectedPersons is null || selectedPersons.Count == 0) {
                     throw new Exception("Select at least one person");
                 }
@@ -71,13 +71,13 @@ public class ConfigurationPageViewModel : BaseViewModel {
         ProjectSelectedCommand = new Command<string>(async boardId => {
             _atlassianConfigurationModel.BoardId = boardId;
 
-            await FetchPeople();
+            await FetchPersons();
         });
 
         MainThread.InvokeOnMainThreadAsync(async () => {
             if (_atlassianConfigurationModel.Cookie is not null) {
                 FetchProjects();
-                await FetchPeople();
+                await FetchPersons();
             }
         });
     }
@@ -105,7 +105,7 @@ public class ConfigurationPageViewModel : BaseViewModel {
         try {
             IsLoadingProjects = true;
             Projects = null;
-            Peoples = null;
+            Persons = null;
 
             List<AtlassianProjectDTO> projects = await AtlassianService.ListProjects(_atlassianConfigurationModel);
             if (projects is null) {
@@ -124,15 +124,15 @@ public class ConfigurationPageViewModel : BaseViewModel {
         }
     }
 
-    private async Task FetchPeople() {
-        IsLoadingPeoples = true;
+    private async Task FetchPersons() {
+        IsLoadingPersons = true;
         List<AtlassianPersonDTO> persons = await AtlassianService.ListPersons(_atlassianConfigurationModel);
-        IsLoadingPeoples = false;
+        IsLoadingPersons = false;
         if (persons is null) return;
 
-        List<AtlassianPersonDTO> cachedPeople = AtlassianService.ListCachedPersons();
-        Peoples = new ObservableCollection<ConfigurationAtlassianPersonViewModel>(persons.Where(p => p.Active).Select(person => new ConfigurationAtlassianPersonViewModel(person) {
-            Checked = cachedPeople?.Any(p => p.Id == person.Id) ?? false
+        List<AtlassianPersonDTO> cachedPersons = AtlassianService.ListCachedPersons();
+        Persons = new ObservableCollection<ConfigurationAtlassianPersonViewModel>(persons.Where(p => p.Active).Select(person => new ConfigurationAtlassianPersonViewModel(person) {
+            Checked = cachedPersons?.Any(p => p.Id == person.Id) ?? false
         }));
     }
 }

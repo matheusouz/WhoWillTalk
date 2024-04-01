@@ -48,7 +48,7 @@ public class MainPageViewModel : BaseViewModel {
     public ICommand ResetCommand { get; }
     public ICommand RemoveCommand { get; }
 
-    private List<AtlassianPersonDTO> _peopleList;
+    private List<AtlassianPersonDTO> _personList;
     private AtlassianConfigurationModel _atlassianConfigurationModel;
 
     public MainPageViewModel() {
@@ -71,10 +71,10 @@ public class MainPageViewModel : BaseViewModel {
             Persons.Remove(model);
         });
 
-        UpdatePeople();
+        UpdatePersons();
     }
 
-    private void UpdatePeople() {
+    private void UpdatePersons() {
         _atlassianConfigurationModel = AtlassianService.GetConfiguration();
         if (_atlassianConfigurationModel is null) {
             IsNotConfigured = true;
@@ -95,13 +95,13 @@ public class MainPageViewModel : BaseViewModel {
     }
 
     private void ResetPersons() {
-        _peopleList = AtlassianService.ListCachedPersons();
+        _personList = AtlassianService.ListCachedPersons();
 
-        if (_peopleList is not null) {
-            List<PersonViewModel> personViewModels = _peopleList.Where(people => people.Active).Select(people =>
+        if (_personList is not null) {
+            List<PersonViewModel> personViewModels = _personList.Where(person => person.Active).Select(person =>
                 new PersonViewModel {
-                    Name = people.Name,
-                    Source = people.AvatarUrl,
+                    Name = person.Name,
+                    Source = person.AvatarUrl,
                     Talked = false
                 }).ToList();
 
@@ -118,12 +118,12 @@ public class MainPageViewModel : BaseViewModel {
 
         if (_atlassianConfigurationModel is null) {
             _atlassianConfigurationModel = atlassianConfigurationModel;
-            UpdatePeople();
+            UpdatePersons();
         }
 
         if (atlassianConfigurationModel.Id != _atlassianConfigurationModel.Id) {
             _atlassianConfigurationModel = atlassianConfigurationModel;
-            UpdatePeople();
+            UpdatePersons();
         }
     }
 }

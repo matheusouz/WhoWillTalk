@@ -83,8 +83,8 @@
                     <Grid>
 
                         <VerticalStackLayout
-                            BindableLayout.ItemsSource="{Binding Peoples}"
-                            IsVisible="{Binding IsLoadingPeoples, Converter={toolkit:InvertedBoolConverter}}">
+                            BindableLayout.ItemsSource="{Binding Persons}"
+                            IsVisible="{Binding IsLoadingPersons, Converter={toolkit:InvertedBoolConverter}}">
 
                             <BindableLayout.ItemTemplate>
 
@@ -110,8 +110,8 @@
                         </VerticalStackLayout>
 
                         <ActivityIndicator
-                            IsRunning="{Binding IsLoadingPeoples}"
-                            IsVisible="{Binding IsLoadingPeoples}"
+                            IsRunning="{Binding IsLoadingPersons}"
+                            IsVisible="{Binding IsLoadingPersons}"
                             HeightRequest="24"
                             WidthRequest="24"
                             HorizontalOptions="Center"

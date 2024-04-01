@@ -9,26 +9,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="89cb69a3-f94f-438e-8015-8eecdf6e98a6" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/WhoWillTalk/Atlassian/AtlassianService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WhoWillTalk/Atlassian/Dtos/People/AtlassianPersonDTO.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WhoWillTalk/Atlassian/Dtos/Project/AtlassianProjectAttributesDTO.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WhoWillTalk/Atlassian/Dtos/Project/AtlassianProjectDTO.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WhoWillTalk/Atlassian/Dtos/Project/AtlassianProjectInfoDTO.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WhoWillTalk/Atlassian/Dtos/Project/AtlassianRecentProjectsDTO.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WhoWillTalk/Atlassian/Models/AtlassianConfigurationModel.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WhoWillTalk/Atlassian/Models/AtlassianProjectModel.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WhoWillTalk/Atlassian/Request/AtlassianRequestManager.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WhoWillTalk/Features/Configuration/ConfigurationAtlassianPeopleViewModel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.WhoWillTalk/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WhoWillTalk/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WhoWillTalk/App.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WhoWillTalk/App.xaml.cs" afterDir="false" />
+    <list default="true" id="89cb69a3-f94f-438e-8015-8eecdf6e98a6" name="Changes" comment="Possibilitando qualquer time usar">
+      <change beforePath="$PROJECT_DIR$/WhoWillTalk/Atlassian/AtlassianService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WhoWillTalk/Atlassian/AtlassianService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WhoWillTalk/Atlassian/Request/AtlassianRequestManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WhoWillTalk/Atlassian/Request/AtlassianRequestManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WhoWillTalk/Features/Configuration/ConfigurationPage.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/WhoWillTalk/Features/Configuration/ConfigurationPage.xaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WhoWillTalk/Features/Configuration/ConfigurationPageViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WhoWillTalk/Features/Configuration/ConfigurationPageViewModel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WhoWillTalk/MainPage.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/WhoWillTalk/MainPage.xaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WhoWillTalk/MainPage.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WhoWillTalk/MainPage.xaml.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WhoWillTalk/MainPageViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WhoWillTalk/MainPageViewModel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WhoWillTalk/MauiProgram.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WhoWillTalk/MauiProgram.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WhoWillTalk/WhoWillTalk.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/WhoWillTalk/WhoWillTalk.csproj" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,6 +30,11 @@
     <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/a616e405881e4f76835e24648c093a939ea20/d5/dac7fbe7/CheckBox.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/matheussouza/workspace/WhoWillTalk/WhoWillTalk/App.xaml.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/matheussouza/workspace/WhoWillTalk/WhoWillTalk/App.xaml.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/matheussouza/workspace/WhoWillTalk/WhoWillTalk/Features/Configuration/ConfigurationPageViewModel.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/matheussouza/workspace/WhoWillTalk/WhoWillTalk/MainPage.xaml" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/WhoWillTalk/Platforms/MacCatalyst/Program.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/WhoWillTalk/Resources/Material/MaterialIcon.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="InvalidFacetManager">
@@ -51,6 +42,7 @@
       <facet id="WhoWillTalk/invalid/Android Facet - WhoWillTalk" />
     </ignored-facets>
   </component>
+  <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
 }</component>
@@ -122,14 +114,26 @@
       <updated>1711642666684</updated>
       <workItem from="1711642667710" duration="2411000" />
       <workItem from="1711802308549" duration="4107000" />
-      <workItem from="1711806528631" duration="13724000" />
+      <workItem from="1711806528631" duration="14164000" />
     </task>
+    <task id="LOCAL-00001" summary="Possibilitando qualquer time usar">
+      <option name="closed" value="true" />
+      <created>1711929380825</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1711929380826</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+    <MESSAGE value="Possibilitando qualquer time usar" />
+    <option name="LAST_COMMIT_MESSAGE" value="Possibilitando qualquer time usar" />
   </component>
 </project>

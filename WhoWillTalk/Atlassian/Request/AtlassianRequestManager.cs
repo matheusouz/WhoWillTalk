@@ -11,13 +11,13 @@ public class AtlassianRequestManager {
         string content = await DoPost(configuration, $"https://asaasdev.atlassian.net/rest/boards/latest/board/{configuration.BoardId}?hideCardExtraFields=true&includeHidden=true&moduleKey=agile-mobile-board-service&onlyUseEpicsFromIssues=true&skipEtag=true&skipExtraFields=true");
         if (content is null) return null;
 
-        List<AtlassianPersonDTO> atlassianPeopleDTOs = new List<AtlassianPersonDTO>();
+        List<AtlassianPersonDTO> persons = new List<AtlassianPersonDTO>();
         JObject jObject = JsonConvert.DeserializeObject<JObject>(content);
 
-        JToken people = jObject["people"];
+        JToken person = jObject["people"];
 
-        foreach (JProperty jProperty in people.ToList()) {
-            atlassianPeopleDTOs.Add(new AtlassianPersonDTO {
+        foreach (JProperty jProperty in person.ToList()) {
+            persons.Add(new AtlassianPersonDTO {
                 Id = jProperty.Value["userKey"].ToString(),
                 Name = jProperty.Value["displayName"].ToString(),
                 AvatarUrl = jProperty.Value["avatarUrl"].ToString(),
@@ -25,7 +25,7 @@ public class AtlassianRequestManager {
             });
         }
 
-        return atlassianPeopleDTOs;
+        return persons;
     }
 
 

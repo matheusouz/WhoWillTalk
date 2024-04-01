@@ -15,8 +15,8 @@ public class AtlassianService {
         return await AtlassianRequestManager.ListProjects(configuration);
     }
 
-    public static void CachePersonList(List<AtlassianPersonDTO> atlassianPeopleDTOs) {
-        string json = JsonConvert.SerializeObject(atlassianPeopleDTOs);
+    public static void CachePersonList(List<AtlassianPersonDTO> persons) {
+        string json = JsonConvert.SerializeObject(persons);
         Preferences.Set("persons", json);
     }
 
