@@ -50,6 +50,10 @@ public class ConfigurationPageViewModel : BaseViewModel {
             _atlassianConfigurationModel.Id = Guid.NewGuid().ToString();
 
             try {
+                if (string.IsNullOrEmpty(_atlassianConfigurationModel.Cookie)) {
+                    throw new Exception("Cookie is required");
+                }
+
                 if (string.IsNullOrEmpty(_atlassianConfigurationModel.BoardId)) {
                     throw new Exception("Board is required");
                 }

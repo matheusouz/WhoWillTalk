@@ -28,7 +28,7 @@ public class AtlassianService {
     }
 
     public static AtlassianConfigurationModel GetConfiguration() {
-        string json = Preferences.Get("configurationx", string.Empty);
+        string json = Preferences.Get("new-configuration", string.Empty);
         if (string.IsNullOrEmpty(json)) return null;
 
         return JsonConvert.DeserializeObject<AtlassianConfigurationModel>(json);
@@ -36,6 +36,6 @@ public class AtlassianService {
 
     public static void SaveConfiguration(AtlassianConfigurationModel atlassianConfigurationModel) {
         string json = JsonConvert.SerializeObject(atlassianConfigurationModel);
-        Preferences.Set("configurationx", json);
+        Preferences.Set("new-configuration", json);
     }
 }
