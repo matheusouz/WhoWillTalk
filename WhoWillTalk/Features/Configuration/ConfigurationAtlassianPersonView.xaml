@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<HorizontalStackLayout xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+   xmlns:configuration="clr-namespace:WhoWillTalk.Features.Configuration"
+   xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+   x:Class="WhoWillTalk.Features.Configuration.ConfigurationAtlassianPersonView"
+   x:DataType="configuration:ConfigurationAtlassianPersonViewModel"
+   Spacing="8">
+
+    <CheckBox
+        IsChecked="{Binding Checked}"
+        InputTransparent="True"
+        Color="White"/>
+
+    <Label
+        Text="{Binding Name}"
+        VerticalOptions="Center"
+        TextColor="White"/>
+
+    <Label
+        Text="{Binding Nickname, StringFormat='({0})'}"
+        IsVisible="{Binding Nickname, Converter={toolkit:IsNotNullConverter}}"
+        VerticalOptions="Center"
+        TextColor="White"/>
+
+    <HorizontalStackLayout.GestureRecognizers>
+
+        <TapGestureRecognizer
+            Command="{Binding TapCommand}"/>
+
+        <TapGestureRecognizer
+            Command="{Binding EditCommand}"
+            NumberOfTapsRequired="2"/>
+
+    </HorizontalStackLayout.GestureRecognizers>
+
+</HorizontalStackLayout>

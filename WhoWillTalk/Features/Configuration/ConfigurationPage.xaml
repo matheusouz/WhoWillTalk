@@ -20,118 +20,110 @@
 
     </NavigationPage.TitleView>
 
-    <ContentPage.Content>
+    <ScrollView>
 
-        <ScrollView>
+        <Grid
+            VerticalOptions="Fill">
 
             <Grid
-                VerticalOptions="Fill">
+                VerticalOptions="Fill"
+                RowDefinitions="Auto, Auto, Auto">
 
-                <VerticalStackLayout
-                    HorizontalOptions="Start"
-                    VerticalOptions="Fill">
+                <Entry
+                    Grid.Row="0"
+                    Placeholder="Cookie (tenant.session.token)"
+                    Text="{Binding Cookie}"
+                    MaximumWidthRequest="400"
+                    BackgroundColor="White"
+                    Margin="16, 24, 16, 8"
+                    TextColor="Black"
+                    IsPassword="True"/>
 
-                    <Entry
-                        Placeholder="Cookie (tenant.session.token)"
-                        Text="{Binding Cookie}"
-                        WidthRequest="400"
-                        HorizontalOptions="Start"
-                        BackgroundColor="White"
-                        Margin="16, 24, 16, 8"
-                        TextColor="Black"
-                        IsPassword="True"/>
+                <Grid
+                    Grid.Row="1">
 
-                    <Grid>
+                    <VerticalStackLayout
+                        Margin="8,0"
+                        IsVisible="{Binding IsLoadingProjects, Converter={toolkit:InvertedBoolConverter}}">
 
-                        <VerticalStackLayout
-                            Margin="8,0"
-                            IsVisible="{Binding IsLoadingProjects, Converter={toolkit:InvertedBoolConverter}}">
-
-                            <HorizontalStackLayout
-                                BindableLayout.ItemsSource="{Binding Projects}">
-
-                                <BindableLayout.ItemTemplate>
-
-                                    <DataTemplate
-                                        x:DataType="configuration:AtlassianProjectModel">
-
-                                        <Button
-                                            Text="{Binding Name}"
-                                            Command="{Binding BindingContext.ProjectSelectedCommand, Source={x:Reference Root}}"
-                                            CommandParameter="{Binding BoardId}"
-                                            Margin="8"/>
-
-                                    </DataTemplate>
-
-                                </BindableLayout.ItemTemplate>
-
-                            </HorizontalStackLayout>
-
-                        </VerticalStackLayout>
-
-                        <ActivityIndicator
-                            IsRunning="{Binding IsLoadingProjects}"
-                            IsVisible="{Binding IsLoadingProjects}"
-                            HeightRequest="24"
-                            WidthRequest="24"
-                            HorizontalOptions="Center"
-                            VerticalOptions="Center"
-                            Color="#0198FF"/>
-
-                    </Grid>
-
-                    <Grid>
-
-                        <VerticalStackLayout
-                            BindableLayout.ItemsSource="{Binding Persons}"
-                            IsVisible="{Binding IsLoadingPersons, Converter={toolkit:InvertedBoolConverter}}">
+                        <FlexLayout
+                            Wrap="Wrap"
+                            JustifyContent="Start"
+                            BindableLayout.ItemsSource="{Binding Projects}">
 
                             <BindableLayout.ItemTemplate>
 
                                 <DataTemplate
-                                    x:DataType="configuration:ConfigurationAtlassianPersonViewModel">
+                                    x:DataType="configuration:AtlassianProjectModel">
 
-                                    <HorizontalStackLayout
-                                        Spacing="8">
-
-                                        <CheckBox
-                                            IsChecked="{Binding Checked}"/>
-
-                                        <Label
-                                            Text="{Binding Name}"
-                                            VerticalOptions="Center"/>
-
-                                    </HorizontalStackLayout>
+                                    <Button
+                                        Text="{Binding Name}"
+                                        Command="{Binding BindingContext.ProjectSelectedCommand, Source={x:Reference Root}}"
+                                        CommandParameter="{Binding BoardId}"
+                                        Margin="8"/>
 
                                 </DataTemplate>
 
                             </BindableLayout.ItemTemplate>
 
-                        </VerticalStackLayout>
+                        </FlexLayout>
 
-                        <ActivityIndicator
-                            IsRunning="{Binding IsLoadingPersons}"
-                            IsVisible="{Binding IsLoadingPersons}"
-                            HeightRequest="24"
-                            WidthRequest="24"
-                            HorizontalOptions="Center"
-                            VerticalOptions="Center"
-                            Color="#0198FF"/>
+                    </VerticalStackLayout>
 
-                    </Grid>
+                    <ActivityIndicator
+                        IsRunning="{Binding IsLoadingProjects}"
+                        IsVisible="{Binding IsLoadingProjects}"
+                        HeightRequest="24"
+                        WidthRequest="24"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        Color="#0198FF"/>
 
-                </VerticalStackLayout>
+                </Grid>
 
-                <Button
-                    Text="Save"
-                    Command="{Binding SaveCommand}"
-                    WidthRequest="120"
-                    HorizontalOptions="End"
-                    VerticalOptions="End"
-                    Margin="16, 8, 16, 24"/>
+                <Grid
+                    Grid.Row="2">
+
+                    <VerticalStackLayout
+                        BindableLayout.ItemsSource="{Binding Persons}"
+                        IsVisible="{Binding IsLoadingPersons, Converter={toolkit:InvertedBoolConverter}}">
+
+                        <BindableLayout.ItemTemplate>
+
+                            <DataTemplate
+                                x:DataType="configuration:ConfigurationAtlassianPersonViewModel">
+
+                                <configuration:ConfigurationAtlassianPersonView
+                                    BindingContext="{Binding }"/>
+
+                            </DataTemplate>
+
+                        </BindableLayout.ItemTemplate>
+
+                    </VerticalStackLayout>
+
+                    <ActivityIndicator
+                        IsRunning="{Binding IsLoadingPersons}"
+                        IsVisible="{Binding IsLoadingPersons}"
+                        HeightRequest="24"
+                        WidthRequest="24"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        Color="#0198FF"/>
+
+                </Grid>
 
             </Grid>
 
-        </ScrollView>
-    </ContentPage.Content>
+            <Button
+                Text="Save"
+                Command="{Binding SaveCommand}"
+                WidthRequest="120"
+                HorizontalOptions="End"
+                VerticalOptions="End"
+                Margin="16, 8, 16, 24"/>
+
+        </Grid>
+
+    </ScrollView>
 </ContentPage>

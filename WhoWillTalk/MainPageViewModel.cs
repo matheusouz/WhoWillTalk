@@ -43,6 +43,12 @@ public class MainPageViewModel : BaseViewModel {
         set => SetProperty(ref _isNotConfigured, value);
     }
 
+    private bool _isSpeechEnabled;
+    public bool IsSpeechEnabled {
+        get => _isSpeechEnabled;
+        set => SetProperty(ref _isSpeechEnabled, value);
+    }
+
     public ICommand NextCommand { get; }
     public ICommand SkipCommand { get; }
     public ICommand ResetCommand { get; }
@@ -52,14 +58,30 @@ public class MainPageViewModel : BaseViewModel {
     private AtlassianConfigurationModel _atlassianConfigurationModel;
 
     public MainPageViewModel() {
+        IsSpeechEnabled = AtlassianService.IsSpeechEnabled();
+
         ResetCommand = new Command(ResetPersons);
-        NextCommand = new Command(() => {
+        NextCommand = new Command(async () => {
             if (PersonTalking is not null) {
                 PersonTalking.Talked = true;
             }
 
             List<PersonViewModel> waitingToTalk = Persons.Where(p => !p.Talked).ToList();
             PersonTalking = waitingToTalk.OrderBy(a => Guid.NewGuid()).ToList().FirstOrDefault();
+
+            if (PersonTalking is not null && IsSpeechEnabled) {
+                IEnumerable<Locale> locales = await TextToSpeech.Default.GetLocalesAsync();
+
+                locales = locales.Where(locale => locale.Language == "pt-BR");
+
+                SpeechOptions options = new SpeechOptions {
+                    Pitch = 1.5f,   // 0.0 - 2.0
+                    Volume = 0.75f, // 0.0 - 1.0
+                    Locale = locales.FirstOrDefault()
+                };
+
+                await TextToSpeech.SpeakAsync(PersonTalking.Name, options);
+            }
         });
 
         SkipCommand = new Command(() => {
@@ -92,15 +114,19 @@ public class MainPageViewModel : BaseViewModel {
         if (propertyName is nameof(PersonTalking)) {
             HasPersonTalking = PersonTalking is not null;
         }
+
+        if (propertyName is nameof(IsSpeechEnabled)) {
+            AtlassianService.SaveSpeech(IsSpeechEnabled);
+        }
     }
 
     private void ResetPersons() {
         _personList = AtlassianService.ListCachedPersons();
 
         if (_personList is not null) {
-            List<PersonViewModel> personViewModels = _personList.Where(person => person.Active).Select(person =>
+            List<PersonViewModel> personViewModels = _personList.Where(person => person.Active && person.IsChecked).Select(person =>
                 new PersonViewModel {
-                    Name = person.Name,
+                    Name = person.Nickname ?? person.Name,
                     Source = person.AvatarUrl,
                     Talked = false
                 }).ToList();

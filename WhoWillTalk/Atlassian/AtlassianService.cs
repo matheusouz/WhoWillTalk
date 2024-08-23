@@ -38,4 +38,12 @@ public class AtlassianService {
         string json = JsonConvert.SerializeObject(atlassianConfigurationModel);
         Preferences.Set("new-configuration", json);
     }
+
+    public static void SaveSpeech(bool enabled) {
+        Preferences.Set("speech-enabled", enabled);
+    }
+
+    public static bool IsSpeechEnabled() {
+        return Preferences.Get("speech-enabled", false);
+    }
 }

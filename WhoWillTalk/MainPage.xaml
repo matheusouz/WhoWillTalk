@@ -11,18 +11,23 @@
      BackgroundColor="#001074"
      NavigationPage.HasNavigationBar="False">
 
-    <Grid>
+    <Grid
+        RowDefinitions="*">
 
         <ScrollView
-            IsVisible="{Binding IsLoading, Converter={toolkit:InvertedBoolConverter}}">
+            IsVisible="{Binding IsLoading, Converter={toolkit:InvertedBoolConverter}}"
+            VerticalOptions="Fill">
 
-            <VerticalStackLayout
-                Spacing="25"
+            <Grid
+                RowSpacing="25"
                 Padding="30,0"
-                VerticalOptions="Center">
+                VerticalOptions="Center"
+                RowDefinitions="Auto, Auto">
 
                 <Grid
-                    ColumnDefinitions="Auto, *">
+                    Grid.Row="0"
+                    ColumnDefinitions="Auto, *"
+                    VerticalOptions="Center">
 
                     <VerticalStackLayout
                         Grid.Column="0">
@@ -79,6 +84,8 @@
                 </Grid>
 
                 <HorizontalStackLayout
+                    VerticalOptions="End"
+                    Grid.Row="1"
                     Spacing="8"
                     IsVisible="{Binding CanDisplayOptions}">
 
@@ -96,7 +103,7 @@
 
                 </HorizontalStackLayout>
 
-            </VerticalStackLayout>
+            </Grid>
         </ScrollView>
 
         <Label
@@ -106,24 +113,48 @@
             VerticalOptions="Center"
             IsVisible="{Binding IsNotConfigured}"/>
 
-        <ImageButton
-            HeightRequest="52"
-            WidthRequest="52"
-            HorizontalOptions="End"
-            VerticalOptions="Start"
-            Margin="24"
-            Clicked="ImageButton_OnClicked">
+        <Grid
+            ColumnDefinitions="Auto, *"
+            VerticalOptions="Start">
 
-            <ImageButton.Source>
+            <HorizontalStackLayout
+                Grid.Column="0">
 
-                <material1:MaterialDesignIconSource
-                    Glyph="{x:Static material:MaterialIcon.Cog}"
-                    Color="White"/>
+                <Label
+                    Text="Auto Speech"
+                    TextColor="White"
+                    VerticalOptions="Center"
+                    FontSize="24"
+                    Margin="16,0"/>
 
-            </ImageButton.Source>
+                <Switch
+                    OnColor="White"
+                    ThumbColor="White"
+                    VerticalOptions="Center"
+                    IsToggled="{Binding IsSpeechEnabled}"/>
 
-        </ImageButton>
+            </HorizontalStackLayout>
 
+            <ImageButton
+                Grid.Column="1"
+                HeightRequest="52"
+                WidthRequest="52"
+                HorizontalOptions="End"
+                VerticalOptions="Start"
+                Margin="24"
+                Clicked="ImageButton_OnClicked">
+
+                <ImageButton.Source>
+
+                    <material1:MaterialDesignIconSource
+                        Glyph="{x:Static material:MaterialIcon.Cog}"
+                        Color="White"/>
+
+                </ImageButton.Source>
+
+            </ImageButton>
+
+        </Grid>
     </Grid>
 
 </ContentPage>

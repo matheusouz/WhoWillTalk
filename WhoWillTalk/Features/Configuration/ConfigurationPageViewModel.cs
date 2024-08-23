@@ -39,7 +39,7 @@ public class ConfigurationPageViewModel : BaseViewModel {
     public ICommand SaveCommand { get; }
     public ICommand ProjectSelectedCommand { get; }
 
-    private AtlassianConfigurationModel _atlassianConfigurationModel;
+    private readonly AtlassianConfigurationModel _atlassianConfigurationModel;
     private CancellationTokenSource _fetchToken;
 
     public ConfigurationPageViewModel() {
@@ -58,13 +58,12 @@ public class ConfigurationPageViewModel : BaseViewModel {
                     throw new Exception("Board is required");
                 }
 
-                List<AtlassianPersonDTO> selectedPersons = Persons?.Where(p => p.Checked).Select(p => p.Person).ToList();
-                if (selectedPersons is null || selectedPersons.Count == 0) {
+                if (Persons is null || !Persons.Any(p => p.Checked)) {
                     throw new Exception("Select at least one person");
                 }
 
                 AtlassianService.SaveConfiguration(_atlassianConfigurationModel);
-                AtlassianService.CachePersonList(selectedPersons);
+                AtlassianService.CachePersonList(Persons.Select(p => p.Person).ToList());
 
                 App.Current.MainPage.DisplayAlert("Sucesso", "Configuração salva", "Ok");
             } catch (Exception e) {
@@ -135,8 +134,15 @@ public class ConfigurationPageViewModel : BaseViewModel {
         if (persons is null) return;
 
         List<AtlassianPersonDTO> cachedPersons = AtlassianService.ListCachedPersons();
-        Persons = new ObservableCollection<ConfigurationAtlassianPersonViewModel>(persons.Where(p => p.Active).Select(person => new ConfigurationAtlassianPersonViewModel(person) {
-            Checked = cachedPersons?.Any(p => p.Id == person.Id) ?? false
+        Persons = new ObservableCollection<ConfigurationAtlassianPersonViewModel>(persons.Where(p => p.Active).Select(person => {
+            AtlassianPersonDTO cachedPerson = cachedPersons.FirstOrDefault(p => p.Id == person.Id);
+
+            if (cachedPerson is not null) {
+                person.Nickname = cachedPerson.Nickname;
+                person.IsChecked = cachedPerson.IsChecked;
+            }
+
+            return new ConfigurationAtlassianPersonViewModel(person);
         }));
     }
 }
