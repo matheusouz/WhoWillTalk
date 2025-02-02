@@ -23,7 +23,7 @@ public class ConfigurationAtlassianPersonViewModel : BaseViewModel {
 
     public ICommand EditCommand { get; set; }
 
-    private bool isEditing;
+    private bool _isEditing;
 
     public ConfigurationAtlassianPersonViewModel(AtlassianPersonDTO person) {
         Person = person;
@@ -37,12 +37,12 @@ public class ConfigurationAtlassianPersonViewModel : BaseViewModel {
         });
 
         EditCommand = new Command(async () => {
-            if (isEditing) return;
+            if (_isEditing) return;
 
-            isEditing = true;
+            _isEditing = true;
             string nickname = await App.Current.MainPage.DisplayPromptAsync("Apelido", "Digite o apelido");
-            Nickname = person.Nickname = nickname;
-            isEditing = false;
+            Nickname = person.Nickname = string.IsNullOrWhiteSpace(nickname) ? null : nickname;
+            _isEditing = false;
         });
     }
 

@@ -1,3 +1,5 @@
+using System.Net;
+using System.Net.Http.Headers;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using WhoWillTalk.Atlassian.Dtos;
@@ -27,15 +29,14 @@ public class AtlassianRequestManager {
 
         return persons;
     }
+    
+    public static async Task<List<AtlassianBoardDTO>> ListProjects(AtlassianConfigurationModel configuration) {
+        string content = await DoPost(configuration, $"https://asaasdev.atlassian.net/rest/agile/1.0/board?maxResults=15&negateLocationFiltering=false&orderBy=name&overrideFilterPermissions=true&projectLocation={configuration.Project}&startAt=0");
+        if (string.IsNullOrWhiteSpace(content)) return null;
 
+        AtlassianProjectResponseDTO recentProjects = JsonConvert.DeserializeObject<AtlassianProjectResponseDTO>(content);
 
-    public static async Task<List<AtlassianProjectDTO>> ListProjects(AtlassianConfigurationModel configuration) {
-        string content = await DoPost(configuration , "https://asaasdev.atlassian.net/rest/internal/2/productsearch/search?counts=projects%3D5&type=projects");
-        if (content is "" or null) return null;
-
-        List<AtlassianRecentProjectsDTO> recentProjects = JsonConvert.DeserializeObject<List<AtlassianRecentProjectsDTO>>(content);
-
-        return recentProjects.First().Items.Select(dto => dto.Project).ToList();
+        return recentProjects.Values;
     }
 
     private static async Task<string> DoPost(AtlassianConfigurationModel configuration, string url) {
@@ -52,9 +53,10 @@ public class AtlassianRequestManager {
         request.Headers.Add("Sec-GPC", "1");
         request.Headers.Add("host", "asaasdev.atlassian.net");
         request.Headers.Add("Cookie",  $"tenant.session.token={configuration.Cookie}");
-        var response = await client.SendAsync(request);
-        response.EnsureSuccessStatusCode();
-
+        HttpResponseMessage response = await client.SendAsync(request);
+        
+        if (response.StatusCode != HttpStatusCode.OK) return null;
+        
         return await response.Content.ReadAsStringAsync();
     }
 }

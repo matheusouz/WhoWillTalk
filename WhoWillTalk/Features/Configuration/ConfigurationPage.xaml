@@ -38,55 +38,22 @@
                     Margin="16, 24, 16, 8"
                     TextColor="Black"
                     IsPassword="True"/>
-
-                <Grid
-                    Grid.Row="1">
-
-                    <VerticalStackLayout
-                        Margin="8,0"
-                        IsVisible="{Binding IsLoadingProjects, Converter={toolkit:InvertedBoolConverter}}">
-
-                        <FlexLayout
-                            Wrap="Wrap"
-                            JustifyContent="Start"
-                            BindableLayout.ItemsSource="{Binding Projects}">
-
-                            <BindableLayout.ItemTemplate>
-
-                                <DataTemplate
-                                    x:DataType="configuration:AtlassianProjectModel">
-
-                                    <Button
-                                        Text="{Binding Name}"
-                                        Command="{Binding BindingContext.ProjectSelectedCommand, Source={x:Reference Root}}"
-                                        CommandParameter="{Binding BoardId}"
-                                        Margin="8"/>
-
-                                </DataTemplate>
-
-                            </BindableLayout.ItemTemplate>
-
-                        </FlexLayout>
-
-                    </VerticalStackLayout>
-
-                    <ActivityIndicator
-                        IsRunning="{Binding IsLoadingProjects}"
-                        IsVisible="{Binding IsLoadingProjects}"
-                        HeightRequest="24"
-                        WidthRequest="24"
-                        HorizontalOptions="Center"
-                        VerticalOptions="Center"
-                        Color="#0198FF"/>
-
-                </Grid>
+                
+                <Entry
+                    Grid.Row="1"
+                    Placeholder="Project name (ex: SKS, MBT, PIX2)"
+                    Text="{Binding Project}"
+                    MaximumWidthRequest="400"
+                    BackgroundColor="White"
+                    Margin="16, 24, 16, 8"
+                    TextColor="Black"/>                
 
                 <Grid
                     Grid.Row="2">
 
                     <VerticalStackLayout
                         BindableLayout.ItemsSource="{Binding Persons}"
-                        IsVisible="{Binding IsLoadingPersons, Converter={toolkit:InvertedBoolConverter}}">
+                        IsVisible="{Binding IsLoading, Converter={toolkit:InvertedBoolConverter}}">
 
                         <BindableLayout.ItemTemplate>
 
@@ -103,8 +70,8 @@
                     </VerticalStackLayout>
 
                     <ActivityIndicator
-                        IsRunning="{Binding IsLoadingPersons}"
-                        IsVisible="{Binding IsLoadingPersons}"
+                        IsRunning="{Binding IsLoading}"
+                        IsVisible="{Binding IsLoading}"
                         HeightRequest="24"
                         WidthRequest="24"
                         HorizontalOptions="Center"

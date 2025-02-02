@@ -11,7 +11,7 @@ public class AtlassianService {
         return await AtlassianRequestManager.ListPersons(configuration);
     }
 
-    public static async Task<List<AtlassianProjectDTO>> ListProjects(AtlassianConfigurationModel configuration) {
+    public static async Task<List<AtlassianBoardDTO>> ListBoards(AtlassianConfigurationModel configuration) {
         return await AtlassianRequestManager.ListProjects(configuration);
     }
 
